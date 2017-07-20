@@ -36,7 +36,7 @@
 			<div id="searchText" class="col-xs-12 col-sm-12 col-md-12 col-lg-12"></div>
 		</div>
 		<div class="row">
-			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 overflow-x-auto">
 				<table class="table table-striped table-bordered">
 					<thead>
 						<tr>
