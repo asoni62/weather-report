@@ -57,8 +57,8 @@ function getWeatherReport(searchValue){
 		});
 	}else{
 		searchText.innerHTML = "City not found, please enter..";
+		loader.style.display='none';
 	}	
-	loader.style.display='none';
 }
 
 /*
