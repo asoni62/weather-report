@@ -42,12 +42,14 @@ tbody p{
     opacity: 0.9;
     position: fixed;
     z-index: 100;
-    color: white;
+    color: darkblue;
     font-size: x-large;
-    font-weight: bold;
+    font-style: italic;
     display: flex;
     align-items: center;
     justify-content: center;
+    font-family: -webkit-body;
+    font-weight: bold;
 }
 
 #searchText{margin-top:1%;}
