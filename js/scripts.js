@@ -40,7 +40,6 @@ function getWeatherReport(searchValue){
 	var loader = document.getElementById('loader');
 	loader.style.display='flex';
 	var searchText = document.getElementById("searchText");
-	searchText.innerHTML = "Search for: "+searchValue.charAt(0).toUpperCase() + searchValue.slice(1);
 	if(searchValue != ""){
 		$.ajax({
 			url:"http://api.openweathermap.org/data/2.5/forecast?q="+searchValue+"&apikey="+defaultAppId,
@@ -53,6 +52,7 @@ function getWeatherReport(searchValue){
 			},
 			error:function(){
 				loader.style.display='none';
+				searchText.innerHTML = "Search for: "+searchValue.charAt(0).toUpperCase() + searchValue.slice(1)+", No result found";
 			}
 		});
 	}else{
@@ -88,6 +88,7 @@ Parameter: api response data and location value
 */
 function updateWeatherReport(resultSet,searchValue){
 	let date = new Date();
+	var searchText = document.getElementById("searchText");
 	if(resultSet && resultSet.list.length > 0){
 		let maxDaysReport = 5;
 		let description = "-";
@@ -97,9 +98,9 @@ function updateWeatherReport(resultSet,searchValue){
 		let maxTemp = "-";
 		let toCelsius = 273.15;
 		let humidity = "-";
-		var searchText = document.getElementById("searchText");
 		if(resultSet.city && resultSet.city.name && resultSet.city.country){
 			if(!(resultSet.city.name.toLowerCase() == searchValue)){
+				searchText.innerHTML = "Search for: "+searchValue.charAt(0).toUpperCase() + searchValue.slice(1)+", No result found";
 				return false;
 			}
 			//set city name and country code
@@ -190,5 +191,7 @@ function updateWeatherReport(resultSet,searchValue){
 			date.setDate(date.getDate()+1);
 			date.setHours(0,0,0,0);
 		}
+	}else{
+		searchText.innerHTML = "Search for: "+searchValue.charAt(0).toUpperCase() + searchValue.slice(1)+", No result found";
 	}
 }
