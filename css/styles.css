@@ -21,6 +21,10 @@ tbody p{
 .padding-left-0{
 	padding-left:0 !important;
 }
+
+.overflow-x-auto{
+	overflow-x:auto;
+}
 /*
 * Common CSS Classes End
 */
