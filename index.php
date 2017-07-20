@@ -18,7 +18,7 @@
 </head>
 
 <body onload="defaultWeatherReport()">
-	<div id="loader" class="loader">Please Wait...</div>
+	<div id="loader" class="loader">Please wait...</div>
 	<div class="well text-center">
 		<h1>Weather Report</h1>
 	</div>
