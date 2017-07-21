@@ -1,11 +1,12 @@
 # weather-report
 
-##Over view##:
+**Over view:**
 This application is basically used to forecast of weather report. Here we are displaying 5 days weather reports including Day, Description, Temperature, Wind and Humidity based on Location/City, entered by user. We are using default location as Pune while loading application first time. 
 
 ##How to run project:##
 
 ###Run in local:-###
+
 Please flow the below steps.
 1.	Download zip file from below location and extract it. https://github.com/asoni62/weather-report.git
 2.	Change index.php file to index.html.
