@@ -94,8 +94,6 @@ function updateWeatherReport(resultSet,searchValue){
 		let description = "-";
 		let wind = "-";
 		let temp = "-";
-		let minTemp = "-";
-		let maxTemp = "-";
 		let toCelsius = 273.15;
 		let humidity = "-";
 		if(resultSet.city && resultSet.city.name && resultSet.city.country){
@@ -109,13 +107,31 @@ function updateWeatherReport(resultSet,searchValue){
 				
 		var tbody = document.getElementById("tbody");
 		for(let tbodyIndex = 0; tbodyIndex < maxDaysReport; tbodyIndex++){
+			let minTemp = "";
+			let maxTemp = "";
+			let weather = "";
 			for(let listIndex=0; listIndex<resultSet.list.length; listIndex++){
 				let data = resultSet.list;
 				let dateTxt = data[listIndex].dt_txt;
-				dataTxt = new Date(dateTxt);
-				
-				if(dataTxt.getTime() >= date.getTime()){
-					let weather = data[listIndex].weather;
+				dateTxt = new Date(dateTxt);
+				let main = data[listIndex].main;
+				if(dateTxt.getDate() == date.getDate()){
+					//get current minimum temperature
+					if(minTemp == ""){
+						minTemp = main.temp_min;
+					}else if(minTemp > main.temp_min){
+						minTemp = main.temp_min;
+					}
+					//get current maximum temperature
+					if(maxTemp == ""){
+						maxTemp = main.temp_min;
+					}else if(maxTemp < main.temp_min){
+						maxTemp = main.temp_min;
+					}
+					
+				}
+				if((dateTxt.getTime() >= date.getTime()) && weather == ""){
+					weather = data[listIndex].weather;
 					if(weather && weather.length>0){
 						for(let weatherIndex=0; weatherIndex<weather.length; weatherIndex++){
 							//get weather description
@@ -140,23 +156,10 @@ function updateWeatherReport(resultSet,searchValue){
 						temp = Math.round(temp - toCelsius);
 					}
 					
-					//get current minimum temperature
-					if(main && main.temp_min){
-						minTemp = main.temp_min;
-						minTemp = Math.round(minTemp - toCelsius);
-					}
-					
-					//get current maximum temperature
-					if(main && main.temp_max){
-						maxTemp = main.temp_max;
-						maxTemp = Math.round(maxTemp - toCelsius);
-					}
-					
 					//get current humidity
 					if(main && main.humidity){
 						humidity = main.humidity;
 					}
-					break;
 				}
 			}	
 			let row = tbody.insertRow(tbodyIndex);
@@ -178,7 +181,9 @@ function updateWeatherReport(resultSet,searchValue){
 			
 			//set current, min and max temperature
 			let tempCell = row.insertCell(2);
-			tempCell.innerHTML = "<p>"+temp+"&deg;</p><span class='subText'>min "+minTemp+"&deg; - max "+maxTemp+"&deg;</span>";
+			minTemp = Math.round(minTemp - toCelsius);
+			maxTemp = Math.round(maxTemp - toCelsius);
+			tempCell.innerHTML = "<p>"+temp+"&deg;</p><span class='subText'>max "+maxTemp+"&deg; - min "+minTemp+"&deg;</span>";
 			
 			//set wind
 			let windCell = row.insertCell(3);
