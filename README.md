@@ -9,7 +9,9 @@ This application is basically used to forecast of weather report. Here we are di
 Run in local:-
 
 Please flow the below steps.
-1.	Download zip file from below location and extract it. https://github.com/asoni62/weather-report.git
+1.	Download zip file from below location and extract it.
+    
+    https://github.com/asoni62/weather-report.git
 2.	Change index.php file to index.html.
 3.	Run this file now.
 
