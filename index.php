@@ -54,9 +54,6 @@
 			</div>
 		</div>
 	</div>
-	<div class="well text-right margin-bottom-0">
-		<p>Copyright Wipro &copy; 2017.</p>
-	</div>
   <!--custome created JS file-->
   <script src="js/scripts.js"></script>
 </body>
